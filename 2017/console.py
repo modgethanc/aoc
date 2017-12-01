@@ -1,3 +1,5 @@
+#!usr/bin/python
+
 """
 Main console for AOC-2017.
 """

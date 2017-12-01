@@ -26,7 +26,7 @@ def solve_captcha(input):
     #print("inputs:" + str(inputList))
 
     for index,number in enumerate(inputList):
-        if number == inputList[(index+1)%4]:
+        if number == inputList[(index+1)%len(inputList)]:
             solution += int(number)
 
     return solution
