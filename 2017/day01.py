@@ -38,7 +38,7 @@ def solve_part_two(input):
     solution = 0
     inputList = list(input)
 
-    step = int(len(inputList)/2)
+    step = len(inputList)//2
 
     for index,number in enumerate(inputList):
         if number == inputList[(index+step)%len(inputList)]:
