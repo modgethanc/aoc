@@ -11,22 +11,37 @@ def main():
     Main entry point.
     """
 
-    print("captcha solution: " + str(solve_captcha(sys.argv[1])))
+    print("part one solution: " + str(solve_part_one(sys.argv[1])))
+    print("part two solution: " + str(solve_part_two(sys.argv[1])))
 
     return None
 
-def solve_captcha(input):
+def solve_part_one(input):
     """
-    Returns solution for given captcha.
+    Returns solution for given captcha for part one.
     """
 
     solution = 0
     inputList = list(input)
 
-    #print("inputs:" + str(inputList))
-
     for index,number in enumerate(inputList):
         if number == inputList[(index+1)%len(inputList)]:
+            solution += int(number)
+
+    return solution
+
+def solve_part_two(input):
+    """
+    Returns solution for given captcha for part two.
+    """
+
+    solution = 0
+    inputList = list(input)
+
+    step = int(len(inputList)/2)
+
+    for index,number in enumerate(inputList):
+        if number == inputList[(index+step)%len(inputList)]:
             solution += int(number)
 
     return solution
