@@ -20,13 +20,13 @@ class CaptchaTestCase(unittest.TestCase):
     def test_example_one(self):
         self.assertEqual(solve_captcha("1122"), 3)
 
-    def test_example_one(self):
+    def test_example_two(self):
         self.assertEqual(solve_captcha("1111"), 4)
 
-    def test_example_one(self):
+    def test_example_three(self):
         self.assertEqual(solve_captcha("1234"), 0)
 
-    def test_example_one(self):
+    def test_example_four(self):
         self.assertEqual(solve_captcha("91212129"), 9)
 
     def test_failure(self):
