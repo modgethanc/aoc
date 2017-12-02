@@ -1,7 +1,9 @@
 #!/usr/bin/python3
 
 """
-AOC 2017 Day 1
+AOC 2017 Day 1:
+    in which i learn about setting myself up for unit tests and the int
+    division operator
 """
 
 import sys

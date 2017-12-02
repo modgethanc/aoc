@@ -1,7 +1,10 @@
 #!/usr/bin/python3
 
 """
-AOC 2017 Day 2
+AOC 2017 Day 2:
+    thumbtyped miraculously under the covers; misinterpreted the input
+    thinking i had whitespace woes from copy/paste, but actually it was
+    weird python max/min behavior on input types
 """
 
 import sys
