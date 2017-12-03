@@ -8,6 +8,7 @@ import unittest
 from day03 import solve_part_one
 from day03 import solve_part_two
 from day03 import manhattan_distance
+from day03 import gen_sequence
 
 class PartOneTestCase(unittest.TestCase):
     """
@@ -44,17 +45,20 @@ class PartTwoTestCase(unittest.TestCase):
     """
     Tests for solve_part_two
     """
-    '''
-
     def test_example_one(self):
-        input = open("day03-sample2.txt", 'r')
-        self.assertEqual(solve_part_two(input), 9)
-        input.close()
-    def test_wrong(self):
-        input = open("day03-input.txt", 'r')
-        self.assertGreater(solve_part_two(input), 344)
-        input.close()
-        '''
+        self.assertEqual(gen_sequence(1), 1)
+
+    def test_example_two(self):
+        self.assertEqual(gen_sequence(2), 1)
+    
+    def test_example_three(self):
+        self.assertEqual(gen_sequence(3), 2)
+    
+    def test_example_four(self):
+        self.assertEqual(gen_sequence(5), 5)
+    
+    def test_example_five(self):
+        self.assertEqual(gen_sequence(13), 59)
 
 if __name__ == '__main__':
     unittest.main()
