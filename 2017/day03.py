@@ -159,10 +159,8 @@ def gen_sequence(max_square):
             neighborhood = neighbors(here)
             #print(neighborhood)
             for item in neighborhood:
-                add = value_table.get(item, 0)
                 #print("adding " +str(add))
-                value += add
-                #value += value_table.get(item, 0)
+                value += value_table.get(item, 0)
             value_table.update({here:value})
             n += 1
             #print(value)
