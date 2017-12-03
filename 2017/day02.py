@@ -14,11 +14,10 @@ def main():
     """
 
     inputfile = open(sys.argv[1], 'r')
-
     input = []
-
     for line in inputfile:
         input.append(line)
+    inputfile.close()
 
     print("part one solution: " + str(solve_part_one(input)))
     print("part two solution: " + str(solve_part_two(input)))
@@ -27,28 +26,25 @@ def main():
 
 def solve_part_one(input):
     """
+    Solver for part one.
     """
 
     solution = 0
-    entries = []
 
     for line in input:
         eval = line.split()
         for index,item in enumerate(eval):
             eval[index] = int(item)
-        maxEntry = max(eval)
-        minEntry = min(eval)
-        diff = maxEntry - minEntry
-        solution += diff
+        solution += max(eval) - min(eval)
 
     return solution
 
 def solve_part_two(input):
     """
+    Solver for part two.
     """
 
     solution = 0
-    entries = []
 
     for line in input:
         eval = line.split()
