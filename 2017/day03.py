@@ -137,17 +137,6 @@ def gen_sequence(max_square):
     if max_square <= 2:
         return 1
     else:
-        '''
-        value_table = [0, 1, 1]
-        n = 3
-        while n <= max_square:
-            # start with immediate predecessor
-            value = value_table[n-1]
-
-            # clean up
-            value_table.append(value)
-            n += 1
-        '''
         value_table = {(0,0): 1,
                 (0,1):1}
         n = 3
@@ -169,48 +158,6 @@ def gen_sequence(max_square):
     #print(value_table)
 
     return value
-
-def generate_grid(max_square):
-    """
-    Return a dict of a grid of coordinates up to the max square.
-    """
-
-    grid = { 1:(0,0)}
-
-    x = 0
-    y = 0
-
-    square = 1
-    i = 1
-    move = -1
-    dir_counter = 0
-    step = 1
-
-    while i < max_square:
-        #print(str(i) + ": " + str((x,y)))
-
-        turn = False
-
-        if x == y:
-            turn = True
-            move *= -1
-            dir_counter += 1
-            step = 1
-            y += move
-
-        elif step <= dir_counter:
-            y += move
-        else:
-            x += move
-
-        # cleanup
-        step += 1
-        i += 1
-        grid.update({i:(x,y)})
-
-    print(grid)
-
-    return(grid)
 
 if __name__ == '__main__':
     sys.exit(main())
