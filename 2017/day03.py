@@ -9,12 +9,15 @@ def main():
     """
     Main entry point.
     """
-
+    """
     inputfile = open(sys.argv[1], 'r')
     input = []
     for line in inputfile:
         input.append(line)
     inputfile.close()
+    """
+
+    input = 361527
 
     print("part one solution: " + str(solve_part_one(input)))
     print("part two solution: " + str(solve_part_two(input)))
@@ -26,15 +29,45 @@ def solve_part_one(input):
     Solver for part one.
     """
 
-    solution = 0
+    print(input)
 
-    for line in input:
-        eval = line.split()
-        for index,item in enumerate(eval):
-            eval[index] = int(item)
-        solution += max(eval) - min(eval)
+    x = 0
+    y = 0
 
-    return solution
+    square = 1
+    i = 1
+    move = -1
+    dir_counter = 0
+    step = 1
+
+    while i < input:
+        print(str(i) + ": " + str((x,y)))
+
+        turn = False
+
+        if x == y:
+            turn = True
+            move *= -1
+            dir_counter += 1
+            step = 1
+            y += move
+
+        elif step <= dir_counter:
+            y += move
+        else:
+            x += move
+
+        step += 1
+        i += 1
+
+    print((x,y))
+    return  manhattan_distance((0,0), (x,y))
+
+def manhattan_distance(start, end):
+    sx, sy = start
+    ex, ey = end
+
+    return abs(ex - sx) + abs(ey - sy)
 
 def solve_part_two(input):
     """
@@ -43,17 +76,6 @@ def solve_part_two(input):
 
     solution = 0
 
-    for line in input:
-        eval = line.split()
-        for index,item in enumerate(eval):
-            eval[index] = int(item)
-
-        for item in eval:
-            for check in eval:
-                if item == check:
-                    pass
-                elif item % check == 0:
-                    solution += item // check
     return solution
 
 if __name__ == '__main__':
