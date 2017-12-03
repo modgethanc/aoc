@@ -5,6 +5,9 @@ AOC 2017 Day 3:
 """
 
 import sys
+
+COORD_TABLE = [(0,0)]
+
 def main():
     """
     Main entry point.
@@ -29,7 +32,16 @@ def solve_part_one(input):
     Solver for part one.
     """
 
-    #print(input)
+    (x,y) = coords_of(input)
+    print((x,y))
+    return  manhattan_distance((0,0), (x,y))
+
+def coords_of(number):
+
+    global COORD_TABLE
+
+    if number < len(COORD_TABLE):
+        return COORD_TABLE[number]
 
     x = 0
     y = 0
@@ -40,8 +52,9 @@ def solve_part_one(input):
     dir_counter = 0
     step = 1
 
-    while i < input:
+    while i < number:
         #print(str(i) + ": " + str((x,y)))
+        COORD_TABLE.append((x,y))
 
         turn = False
 
@@ -59,9 +72,8 @@ def solve_part_one(input):
 
         step += 1
         i += 1
-
-    #print((x,y))
-    return  manhattan_distance((0,0), (x,y))
+    #print(COORD_TABLE)
+    return (x,y)
 
 def manhattan_distance(start, end):
     sx, sy = start
@@ -76,7 +88,24 @@ def solve_part_two(input):
 
     solution = 0
 
-    return solution
+    i = 1
+
+    while gen_sequence(i) < input:
+        i += 1
+
+    return gen_sequence(i+1)
+
+def neighbors(coord):
+
+    (x,y) = coord
+    return [(x, y+1),
+            (x+1,y+1),
+            (x+1,y),
+            (x+1,y-1),
+            (x,y-1),
+            (x-1,y-1),
+            (x-1,y),
+            (x-1,y+1)]
 
 def gen_sequence(max_square):
     """
@@ -104,11 +133,11 @@ def gen_sequence(max_square):
 
     ## CURRENT GOAL: try to brute-force this
 
-    value = 1
 
-    if max_square == 2:
-        return value
+    if max_square <= 2:
+        return 1
     else:
+        '''
         value_table = [0, 1, 1]
         n = 3
         while n <= max_square:
@@ -118,8 +147,26 @@ def gen_sequence(max_square):
             # clean up
             value_table.append(value)
             n += 1
+        '''
+        value_table = {(0,0): 1,
+                (0,1):1}
+        n = 3
+        while n <= max_square:
+            value = 0
+            print("calc "+str(n))
+            here = coords_of(n)
+            neighborhood = neighbors(here)
+            #print(neighborhood)
+            for item in neighborhood:
+                add = value_table.get(item, 0)
+                #print("adding " +str(add))
+                value += add
+                #value += value_table.get(item, 0)
+            value_table.update({here:value})
+            n += 1
+            print(value)
 
-    print(value_table)
+    #print(value_table)
 
     return value
 

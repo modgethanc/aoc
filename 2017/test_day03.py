@@ -54,6 +54,9 @@ class PartTwoTestCase(unittest.TestCase):
     def test_example_three(self):
         self.assertEqual(gen_sequence(3), 2)
     
+    def test_example_one(self):
+        self.assertEqual(gen_sequence(4), 4)
+
     def test_example_four(self):
         self.assertEqual(gen_sequence(5), 5)
     
