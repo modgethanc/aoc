@@ -2,6 +2,8 @@
 
 """
 AOC 2017 Day 4:
+    a low-stress little string compare exercise, pecked at gently while running
+    lab hours. on an actual keyboard!
 """
 
 import sys
