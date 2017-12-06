@@ -2,6 +2,8 @@
 
 """
 AOC 2017 Day 6:
+    pretty easy cruise! i got to think carefully about how to break this up
+    into individual steps for testing.
 """
 
 import sys
@@ -77,6 +79,15 @@ def redistribute(banks, index):
 
     return banks
 
+def solve_part_two(inputs):
+    """
+    Solver for part two.
+    """
+
+    new_state = find_final_state(inputs)
+
+    return solve_part_one(new_state)
+
 def find_final_state(input_banks):
     """
     Returns the state this memory bank ends on.
@@ -96,16 +107,6 @@ def find_final_state(input_banks):
         else:
             states.append(banks[:])
 
-def solve_part_two(inputs):
-    """
-    Solver for part two.
-    """
-
-    solution = 0
-
-
-
-    return solution
 
 if __name__ == '__main__':
     sys.exit(main())
