@@ -1,7 +1,12 @@
 #!/usr/bin/python3
 
 """
-AOC 2017 Day :
+AOC 2017 Day 8:
+    10% thumbtyped other than starter code template from previous days! i
+    enjoyed forcing myself to find a balance between brevity and
+    expressiveness.
+
+    making use of tuples and such is very helpful lately.
 """
 
 import sys
@@ -16,24 +21,27 @@ def main():
         inputs.append(line.rstrip())
     inputfile.close()
 
-    print("part one solution: " + str(solve_part_one(inputs)))
-    print("part two solution: " + str(solve_part_two(inputs)))
+    (solution1, solution2) = solve(inputs)
+
+    print("part one solution: " + str(solution1))
+    print("part two solution: " + str(solution2))
 
     return 0
 
-def solve_part_one(inputs):
+def solve(inputs):
     """
-    Solver for part one.
+    Solver for both parts, returned as a tuple.
     """
 
     registers = {}
+    value_history= []
 
     for line in inputs:
-        registers = update_registers(line, registers)
+        (registers, value_history) = update_registers(line, registers, value_history)
 
-    return sorted(registers.values())[-1]
+    return sorted(registers.values())[-1], sorted(value_history)[-1]
 
-def update_registers(line, registers):
+def update_registers(line, registers, value_history):
     """
     Given a input line, make the modification based on the register dict.
     """
@@ -44,11 +52,15 @@ def update_registers(line, registers):
         item = registers.get(register, 0)
 
         if modification == "inc":
-            registers.update({register:item+value})
+            new_value = item + value
+            registers.update({register:new_value})
         else:
-            registers.update({register:item-value})
+            new_value = item - value
+            registers.update({register:new_value})
 
-    return registers
+        value_history.append(new_value)
+
+    return registers, value_history
 
 def evaluate(line, registers):
     """
@@ -72,17 +84,6 @@ def evaluate(line, registers):
         return value >= target
     elif operator == "!=":
         return value != target
-
-def solve_part_two(input):
-    """
-    Solver for part two.
-    """
-
-    solution = 0
-
-
-
-    return solution
 
 if __name__ == '__main__':
     sys.exit(main())
