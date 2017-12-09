@@ -1,7 +1,13 @@
 #!/usr/bin/python3
 
 """
-AOC 2017 Day :
+AOC 2017 Day 7:
+    did this a day late because i've had a really busy week; this was a really
+    satisfying sequence of data manipulations, and i had to call on a couple of
+    vague memories of set operations.
+
+    part two feels excessively micromanaged, but i'm really tired and don't
+    have the attention span to write longer functions, so here you go.
 """
 
 import sys
@@ -16,7 +22,7 @@ def main():
         inputs.append(line.rstrip())
     inputfile.close()
 
-    #print("part one solution: " + str(solve_part_one(inputs)))
+    print("part one solution: " + str(solve_part_one(inputs)))
     print("part two solution: " + str(solve_part_two(inputs)))
 
     return 0
@@ -86,19 +92,19 @@ def solve_part_two(inputs):
     input_tree = make_tree(inputs)
     culprits = find_unbalanced_items(input_tree)
     unbalanced = []
+
+    ## find all unbalanced items
     for culprit in culprits:
         unbalanced.append(find_culprit(tower_weights(culprit, input_tree)))
 
-    print(unbalanced)
+    ## we only want to work with the smallest one, because it's closest to the
+    ## top of the stack
     unbalanced.sort(key=lambda item:item[1])
-
     culprit = unbalanced[0]
 
+    ## now actually figure out what it oguht to be
     culprit_weight = sum_weights(culprit[0], input_tree)
-    print(culprit_weight)
     delta = culprit[1] - culprit_weight
-    print(delta)
-
     solution = input_tree.get(culprit[0]).get("weight") + delta
 
     return solution
