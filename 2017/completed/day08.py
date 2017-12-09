@@ -2,7 +2,7 @@
 
 """
 AOC 2017 Day 8:
-    10% thumbtyped other than starter code template from previous days! i
+    100% thumbtyped other than starter code template from previous days! i
     enjoyed forcing myself to find a balance between brevity and
     expressiveness.
 
