@@ -1,7 +1,10 @@
 #!/usr/bin/python3
 
 """
-AOC 2017 Day :
+AOC 2017 Day 10:
+    - this was a test of my reading comprehension at 1am!
+    - mostly proud of realizing how swap magic worked for part one; part two
+      was just a tedious careful following of instructions
 """
 
 import sys
@@ -20,7 +23,7 @@ def main():
     inputfile.close()
 
 
-    #print("part one solution: " + str(solve_part_one(256, inputs[0])))
+    print("part one solution: " + str(solve_part_one(256, inputs[0])))
     print("part two solution: " + str(solve_part_two(256, inputs[0])))
 
     return 0
@@ -34,8 +37,6 @@ def solve_part_one(size, inputs):
 
     knot = make_string(size)
     tie_knot(knot, 0, 0, sequence)
-
-    #print("ending: "+str(knot))
 
     return knot[0]*knot[1]
 
@@ -60,8 +61,6 @@ def tie_knot(knot, position, skip, sequence):
     steps and return the current knotstring, position, and skip.
     """
 
-    #print("starting: "+str(knot))
-
     size = len(knot)
 
     for length in sequence:
@@ -71,25 +70,17 @@ def tie_knot(knot, position, skip, sequence):
         # swap magic
         left = newleft = start
         right = newright = end
-        #print("original start "+str(start))
-        #print("original end "+str(end))
-
         swaps = length // 2
         i = 0
 
         while i < swaps:
             left = newleft
             right = newright
-            #print("left:" + str(left))
-            #print("right:" + str(right))
             (knot[left], knot[right]) = (knot[right], knot[left])
             newleft = (left + 1) % size
             newright = (right - 1) % size
-            #print(knot)
-            #print("new left: "+ str(newleft) + " new right: "+str(newright))
 
             i += 1
-
 
         position += skip + length
         position %= size
@@ -129,11 +120,15 @@ def solve_part_two(size, inputs):
            dense.append(block) 
            block = 0
 
+    # generate hex string 
     for item in dense:
         converted = hex(item)
+
+        # gotta pad for leading 0
         padding = ""
         if len(converted) < 4:
             padding = "0"
+
         solution += padding + converted[2:]
 
     return solution
