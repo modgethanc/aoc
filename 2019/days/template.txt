@@ -1,0 +1,29 @@
+## ADVENT OF CODE 2019 DAY 1
+#
+# part 1:
+#
+# part 2:
+
+## part 1
+
+
+
+# test input
+
+IO.write("1.1: ")
+IO.puts(1=1)
+
+# puzzle input
+
+
+
+## part 2
+
+
+
+# test input
+
+IO.write("1.1: ")
+IO.puts(1=1)
+
+# puzzle input
