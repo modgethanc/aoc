@@ -9,3 +9,5 @@
 ### stretch goals
 
   * write a little console for metagame work
+
+completed days 1-10 during the event
