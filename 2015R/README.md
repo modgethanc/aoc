@@ -1,3 +1,3 @@
 # advent of code 2015R
 
-retroactive completion
+retroactive completion, playing some code golf
