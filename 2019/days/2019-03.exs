@@ -99,16 +99,15 @@ defmodule PartTwo do
     def calc(wire1, wire2) do
         wire1_path = wire_list(wire1, {0,0}, [{0,0}])
         wire1_coords = PartOne.process_wire(wire1, {0,0}, %{})
-        wire2_path = Map.keys(PartOne.process_wire(wire2, {0,0}, %{}))
+        wire2_path = wire_list(wire2, {0,0}, [{0,0}])
         crossings = PartOne.find_crossings(wire1_coords, wire2_path, [])
         wire1_trace = find_traces(wire1_path, crossings, [])
         wire2_trace = find_traces(wire2_path, crossings, [])
         sum(wire1_trace, wire2_trace, [])
         |> Enum.sort()
-        |> Enum.map(&IO.puts/1)
-        #|> Enum.at(1)
+        #|> Enum.map(&IO.puts/1)
+        |> Enum.at(1)
         #|> IO.puts()
-        IO.puts(wire1_path)
     end
 
     def wire_list([head | tail ], loc, coords) do
@@ -155,3 +154,6 @@ IO.write("1.1: ")
 IO.puts(PartTwo.calc(wire1, wire2) == 30)
 
 # puzzle input
+
+PartTwo.calc(input1, input2)
+|> IO.puts()
