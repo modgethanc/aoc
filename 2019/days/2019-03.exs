@@ -7,24 +7,32 @@
 ## part 1
 
 defmodule PartOne do
-    def crossings(wire1, wire1) do
-        # find conjunction of two lines
+    def calc(wire1, wire2) do
+        wire1_coords = process_wire(wire1, {0,0}, %{})
+        wire2_coords = Map.keys(process_wire(wire2, {0,0}, %{}))
+        #find_crossings(wire1_coords, wire2_coords, [])
+        Enum.map(find_crossings(wire1_coords, wire2_coords, []), &manhattan/1)
+        |> Enum.sort()
+        |> Enum.at(1)
+    end
 
+    def find_crossings(coords, [ check | remainder ], crossings) do
+        if coords[check] do
+            find_crossings(coords, remainder, [check]++crossings)
+        else
+            find_crossings(coords, remainder, crossings)
+        end
+    end
+
+    def find_crossings(coords, [ ], crossings) do
+        crossings
     end
 
     def process_wire([head | tail ], loc, coords) do
         input = String.codepoints(head)
         distance = String.to_integer(Enum.join(tl(input)))
-        newloc =
-        case hd(input) do
-            "U" -> {elem(loc, 0)+distance,elem(loc, 1)}
-            "D" -> {elem(loc, 0)-distance,elem(loc, 1)}
-            "L" -> {elem(loc, 0),elem(loc, 1)-distance}
-            "R" -> {elem(loc, 0),elem(loc, 1)+distance}
-        end
         line = draw_line(loc, hd(input), distance, [])
-        #IO.puts(length(line))
-        process_wire(tail, newloc, record_line(line, coords))
+        process_wire(tail, hd(line), record_line(line, coords))
     end
 
     def process_wire([], loc, coords) do
@@ -33,7 +41,7 @@ defmodule PartOne do
 
     def draw_line(start, direction, distance, points) do
       #return list of tuples for every point on this line
-      if distance == 0 do
+      if distance == -1 do
         points
       else
         case direction do
@@ -53,28 +61,29 @@ defmodule PartOne do
     def record_line([], coords) do
         coords
     end
+
+    def manhattan({x,y}) do
+        abs(x) + abs(y)
+    end
 end
 
 IO.puts("PART ONE")
 
 # test input
 
+wire1 = String.split("R8,U5,L5,D3", ",")
+wire2 = String.split("U7,R6,D4,L4", ",")
+
 IO.write("1.1: ")
-IO.puts(1=1)
+IO.puts(PartOne.calc(wire1, wire2) == 6)
 
 # puzzle input
-
 
 #list_input = String.split(String.trim(File.read!("2019-03-input.txt")))
 #wire1 = String.split(hd(list_input), ",")
 #wire2 = String.split(hd(tl(list_input)), ",")
-
-wire1 = String.split("R8,U5,L5,D3", ",")
-wire2 = String.split("U7,R6,D4,L4", ",")
-
-IO.puts(length(Map.keys(PartOne.process_wire(wire1, {0,0}, %{}))))
-PartOne.process_wire(wire2, {0,0}, %{})
-PartOne.process_wire(wire2, {0,0}, %{})
+#PartOne.calc(wire1, wire2)
+#|> IO.puts()
 
 ## part 2
 
