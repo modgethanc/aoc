@@ -1,4 +1,4 @@
-## ADVENT OF CODE 2019 DAY 1
+## ADVENT OF CODE 2019 DAY 2
 #
 # part 1:
 #

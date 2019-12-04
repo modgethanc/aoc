@@ -18,6 +18,7 @@ IO.puts(1=1)
 # puzzle input
 
 
+list_input = String.split(String.trim(File.read!("2019-xx-input.txt")))
 
 ## part 2
 
